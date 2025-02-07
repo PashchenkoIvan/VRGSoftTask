@@ -1,5 +1,5 @@
 //
-//  MostSharedViewController.swift
+//  MostViewedViewController.swift
 //  VRGSoftTask
 //
 //  Created by Пащенко Иван on 07.02.2025.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-class MostSharedViewController: UIViewController {
+class MostViewedViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    let mostSharedViewModel = MostSharedViewModel()
-    var isLoadedData: Bool = false
+    let mostViewedViewModel = MostViewedViewModel()
+    var isLoadedData: Bool = false // Флаг, указывающий, загружены ли данные
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +25,7 @@ class MostSharedViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // Запускаем загрузку самых упоминаемых статей
-        mostSharedViewModel.getMostSharedArticles()
-        // Привязываем ViewModel к отображению
+        mostViewedViewModel.getMostViewedArticles()
         bindViewModel()
     }
 }
