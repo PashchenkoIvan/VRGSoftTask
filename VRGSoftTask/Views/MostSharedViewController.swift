@@ -1,20 +1,17 @@
 //
-//  ViewController.swift
+//  MostSharedViewController.swift
 //  VRGSoftTask
 //
-//  Created by Пащенко Иван on 05.02.2025.
+//  Created by Пащенко Иван on 07.02.2025.
 //
 
 import UIKit
 
-class MostEmailedViewController: UIViewController {
-    
-    //MARK: IBOutlet для таблицы
+class MostSharedViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    //MARK: Модель для получения данных о самых упоминаемых статьях
-    let mostEmailedViewModel = MostEmailedViewModel()
-    var isLoadedData: Bool = false // Флаг, указывающий, загружены ли данные
+    let mostSharedViewModel = MostSharedViewModel()
+    var isLoadedData: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,14 +26,14 @@ class MostEmailedViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Запускаем загрузку самых упоминаемых статей
-        mostEmailedViewModel.getMostEmailedArticles()
+        mostSharedViewModel.getMostSharedArticles()
         // Привязываем ViewModel к отображению
         bindViewModel()
     }
     
     //MARK: bindViewModel - Метод для привязки данных из ViewModel к представлению
     func bindViewModel() {
-        mostEmailedViewModel.mostEmailed.bind { [weak self] articles in
+        mostSharedViewModel.mostShared.bind { [weak self] articles in
             self?.isLoadedData = true // Устанавливаем флаг, что данные загружены
             
             DispatchQueue.main.async {
@@ -54,28 +51,23 @@ class MostEmailedViewController: UIViewController {
     }
 }
 
-// MARK: - UITableViewDataSource methods
-extension MostEmailedViewController: UITableViewDataSource {
-    // Указываем количество строк в секции
+extension MostSharedViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Если данных нет, возвращаем 1 ( для отображения сообщения)
-        return mostEmailedViewModel.mostEmailed.value.isEmpty ? 1 : mostEmailedViewModel.mostEmailed.value.count
+        return mostSharedViewModel.mostShared.value.isEmpty ? 1 : mostSharedViewModel.mostShared.value.count
     }
     
-    // Настройка ячейки для отображения
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell
         
-        if mostEmailedViewModel.mostEmailed.value.isEmpty {
-            // Если данных нет, создаем ячейку с сообщением
+        if mostSharedViewModel.mostShared.value.isEmpty {
             cell = UITableViewCell()
             cell.textLabel?.text = isLoadedData ? "No articles available" : "Loading articles..."
         } else {
             // Получаем текущую статью
-            let currentArticle = mostEmailedViewModel.mostEmailed.value[indexPath.row]
+            let currentArticle = mostSharedViewModel.mostShared.value[indexPath.row]
             // Декьюдим ячейку типа ArticleTableViewCell
             guard let articleCell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell", for: indexPath) as? ArticleTableViewCell else {
-                return UITableViewCell()
+                return UITableViewCell() // Возвращаем пустую ячейку в случае ошибки
             }
             // Конфигурируем ячейку с данными статьи
             configure(cell: articleCell, with: currentArticle)
@@ -85,6 +77,6 @@ extension MostEmailedViewController: UITableViewDataSource {
     }
 }
 
-extension MostEmailedViewController: UITableViewDelegate {
-    // Можно добавить дополнительные методы делегата здесь, если это необходимо.
+extension MostSharedViewController: UITableViewDelegate {
+    
 }
