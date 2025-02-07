@@ -1,0 +1,13 @@
+//
+//  ArticleTableViewCell.swift
+//  VRGSoftTask
+//
+//  Created by Пащенко Иван on 07.02.2025.
+//
+
+import UIKit
+
+class ArticleTableViewCell: UITableViewCell {
+    @IBOutlet weak var titleTextLabel: UILabel!
+    @IBOutlet weak var descriptionTextLabel: UILabel!
+}

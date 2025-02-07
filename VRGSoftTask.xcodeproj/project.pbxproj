@@ -15,7 +15,7 @@
 /* Begin PBXFileReference section */
 		3ADD3B434B9A83F2F33773CD /* Pods-VRGSoftTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VRGSoftTask.release.xcconfig"; path = "Target Support Files/Pods-VRGSoftTask/Pods-VRGSoftTask.release.xcconfig"; sourceTree = "<group>"; };
 		6378C1962D53B37A00008397 /* VRGSoftTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VRGSoftTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6378C1AE2D53C0EA00008397 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		6378C1AE2D53C0EA00008397 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		6378C1D12D53C37500008397 /* ArticleCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ArticleCoreData.xcdatamodel; sourceTree = "<group>"; };
 		E7880FBA69BCAC3A6E914CA8 /* Pods_VRGSoftTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VRGSoftTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F12A3C7F7CA4A9BFD602F2F5 /* Pods-VRGSoftTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VRGSoftTask.debug.xcconfig"; path = "Target Support Files/Pods-VRGSoftTask/Pods-VRGSoftTask.debug.xcconfig"; sourceTree = "<group>"; };
