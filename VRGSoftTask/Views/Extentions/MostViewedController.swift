@@ -33,7 +33,7 @@ extension MostViewedViewController {
     
     // MARK: - Cell Configuration
     func configure(cell: ArticleTableViewCell, with article: ArticleStruct) {
-        if let urlString = article.media.first?.mediaMetadata[1].url,
+        if let urlString = article.media.first?.mediaMetadata[article.media[0].mediaMetadata.count - 1].url,
            let url = URL(string: urlString) {
             cell.articleCellImageView.kf.setImage(with: url)
         }

@@ -16,7 +16,7 @@ extension ArticleViewController {
         urlLabel.text = "Article url: \(viewModel.getArticleURL())"
         dateLabel.text = viewModel.getPublishedDate()
         
-        let url = URL(string: viewModel.article.media[0].mediaMetadata[2].url)
+        let url = URL(string: viewModel.article.media[0].mediaMetadata[viewModel.article.media[0].mediaMetadata.count - 1].url)
         articleImageView.kf.setImage(with: url)
         
         self.navigationItem.title = viewModel.getTitle()

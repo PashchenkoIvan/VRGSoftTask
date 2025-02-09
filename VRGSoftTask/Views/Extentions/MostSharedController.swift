@@ -33,7 +33,7 @@ extension MostSharedViewController {
     
     // Метод для настройки ячейки с данными статьи
     func configure(cell: ArticleTableViewCell, with article: ArticleStruct) {
-        let urlString = article.media[0].mediaMetadata[1].url
+        let urlString = article.media[0].mediaMetadata[article.media[0].mediaMetadata.count - 1].url
         let url = URL(string: urlString)
         cell.articleCellImageView.kf.setImage(with: url)
         
