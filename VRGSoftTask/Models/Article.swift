@@ -8,11 +8,11 @@
 import Foundation
 
 // MARK: - ArticleStruct
-struct ArticleStruct: Codable {
+public struct ArticleStruct: Codable {
     let uri: String
     let url: String
-    let id: Int
-    let assetID: Int
+    let id: Int64
+    let assetID: Int64
     let source: String
     let publishedDate: String
     let updated: String
@@ -32,7 +32,7 @@ struct ArticleStruct: Codable {
     let media: [Media]
     let etaID: Int
     
-    init(uri: String = "", url: String = "", id: Int = 0, assetID: Int = 0, source: String = "", publishedDate: String = "", updated: String = "", section: String = "", subsection: String = "", nytdsection: String = "", adxKeywords: String = "", column: String = "", byline: String = "", type: String = "", title: String = "", abstract: String = "", desFacet: [String] = [], orgFacet: [String] = [], perFacet: [String] = [], geoFacet: [String] = [], media: [Media] = [], etaID: Int = 0) {
+    init(uri: String = "", url: String = "", id: Int64 = 0, assetID: Int64 = 0, source: String = "", publishedDate: String = "", updated: String = "", section: String = "", subsection: String = "", nytdsection: String = "", adxKeywords: String = "", column: String = "", byline: String = "", type: String = "", title: String = "", abstract: String = "", desFacet: [String] = [], orgFacet: [String] = [], perFacet: [String] = [], geoFacet: [String] = [], media: [Media] = [], etaID: Int = 0) {
         self.uri = uri
         self.url = url
         self.id = id

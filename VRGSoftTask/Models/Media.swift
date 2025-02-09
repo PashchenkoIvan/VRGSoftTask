@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Media
-struct Media: Codable {
+public struct Media: Codable {
     let type: String
     let subtype: String
     let caption: String

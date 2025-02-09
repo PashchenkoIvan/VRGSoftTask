@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - MediaMetadatum
-struct MediaMetadatum: Codable {
+public struct MediaMetadatum: Codable {
     let url: String
     let format: String
     let height: Int

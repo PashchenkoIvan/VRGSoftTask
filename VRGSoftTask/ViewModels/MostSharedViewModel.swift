@@ -15,7 +15,7 @@ class MostSharedViewModel {
     func getMostSharedArticles () {
         // Выполняем сетевой запрос через RequestFactory
         // Адрес для запроса - это 'mostEmailed', и период - 'month'
-        RequestFactory.request(address: .mostShared, period: .month) { (response: Result<ArticleResultStruct, Error>) in
+        RequestFactory.request(address: .mostShared) { (response: Result<ArticleResultStruct, Error>) in
             // Обрабатываем ответ на запрос
             switch response {
             case .success(let success):

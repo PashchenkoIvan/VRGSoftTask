@@ -16,7 +16,7 @@ class MostEmailedViewModel {
     func getMostEmailedArticles () {
         // Выполняем сетевой запрос через RequestFactory
         // Адрес для запроса - это 'mostEmailed', и период - 'month'
-        RequestFactory.request(address: .mostEmailed, period: .month) { (response: Result<ArticleResultStruct, Error>) in
+        RequestFactory.request(address: .mostEmailed) { (response: Result<ArticleResultStruct, Error>) in
             // Обрабатываем ответ на запрос
             switch response {
             case .success(let success):
@@ -24,6 +24,7 @@ class MostEmailedViewModel {
                 self.mostEmailed.value = success.results
             case .failure(let error):
                 // Если произошла ошибка, выводим ее в консоль
+                self.mostEmailed.value = []
                 print(error)
             }
         }

@@ -25,14 +25,19 @@ enum Endpoints: String {
 }
 
 class RequestFactory {
+    private static var period: Period = Period.month
+    
+    static func setPeriod(period: Period) {
+        self.period = period
+    }
+    
     /// Генерическая функция для выполнения сетевого запроса к указанной конечной точке API.
     /// - Parameters:
     ///   - address: Конечная точка API для запроса данных.
-    ///   - period: Временной период, для которого нужно получить данные.
     ///   - completion: Замыкание для обработки результата.
-    static func request<T: Codable>(address: Endpoints, period: Period, completion: @escaping (Result<T, Error>) -> ()) {
+    static func request<T: Codable>(address: Endpoints, completion: @escaping (Result<T, Error>) -> ()) {
         // Составляем URL, добавляя период к конечной точке
-        let url: String = "\(address.rawValue)\(period.rawValue).json"
+        let url: String = "\(address.rawValue)\(self.period.rawValue).json"
         
         // Выполняем сетевой запрос с помощью Alamofire
         AF.request(

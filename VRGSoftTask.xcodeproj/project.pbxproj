@@ -7,16 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		633673632D57DBF500806652 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 633673612D57DBF500806652 /* CoreData.xcdatamodeld */; };
 		6378C1AF2D53C0EA00008397 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 6378C1AE2D53C0EA00008397 /* Podfile */; };
-		6378C1D22D53C37500008397 /* ArticleCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6378C1D02D53C37500008397 /* ArticleCoreData.xcdatamodeld */; };
+		63A4F9BC2D57C031006B933C /* Article+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A4F9BB2D57C031006B933C /* Article+CoreDataProperties.swift */; };
 		FB467DEC687E8861F633652D /* Pods_VRGSoftTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7880FBA69BCAC3A6E914CA8 /* Pods_VRGSoftTask.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3ADD3B434B9A83F2F33773CD /* Pods-VRGSoftTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VRGSoftTask.release.xcconfig"; path = "Target Support Files/Pods-VRGSoftTask/Pods-VRGSoftTask.release.xcconfig"; sourceTree = "<group>"; };
+		633673622D57DBF500806652 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		6378C1962D53B37A00008397 /* VRGSoftTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VRGSoftTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6378C1AE2D53C0EA00008397 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		6378C1D12D53C37500008397 /* ArticleCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ArticleCoreData.xcdatamodel; sourceTree = "<group>"; };
+		63A4F9BB2D57C031006B933C /* Article+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E7880FBA69BCAC3A6E914CA8 /* Pods_VRGSoftTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VRGSoftTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F12A3C7F7CA4A9BFD602F2F5 /* Pods-VRGSoftTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VRGSoftTask.debug.xcconfig"; path = "Target Support Files/Pods-VRGSoftTask/Pods-VRGSoftTask.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,8 +76,9 @@
 		6378C18D2D53B37A00008397 = {
 			isa = PBXGroup;
 			children = (
-				6378C1D02D53C37500008397 /* ArticleCoreData.xcdatamodeld */,
+				633673612D57DBF500806652 /* CoreData.xcdatamodeld */,
 				6378C1AE2D53C0EA00008397 /* Podfile */,
+				63A4F9BB2D57C031006B933C /* Article+CoreDataProperties.swift */,
 				6378C1982D53B37A00008397 /* VRGSoftTask */,
 				6378C1972D53B37A00008397 /* Products */,
 				120BA10DDF10138682B03FE1 /* Pods */,
@@ -208,7 +211,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6378C1D22D53C37500008397 /* ArticleCoreData.xcdatamodeld in Sources */,
+				633673632D57DBF500806652 /* CoreData.xcdatamodeld in Sources */,
+				63A4F9BC2D57C031006B933C /* Article+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,13 +434,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		6378C1D02D53C37500008397 /* ArticleCoreData.xcdatamodeld */ = {
+		633673612D57DBF500806652 /* CoreData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				6378C1D12D53C37500008397 /* ArticleCoreData.xcdatamodel */,
+				633673622D57DBF500806652 /* CoreData.xcdatamodel */,
 			);
-			currentVersion = 6378C1D12D53C37500008397 /* ArticleCoreData.xcdatamodel */;
-			path = ArticleCoreData.xcdatamodeld;
+			currentVersion = 633673622D57DBF500806652 /* CoreData.xcdatamodel */;
+			path = CoreData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

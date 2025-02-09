@@ -15,7 +15,7 @@ class MostViewedViewModel {
     func getMostViewedArticles () {
         // Выполняем сетевой запрос через RequestFactory
         // Адрес для запроса - это 'mostViewed', и период - 'month'
-        RequestFactory.request(address: .mostViewed, period: .month) { (response: Result<ArticleResultStruct, Error>) in
+        RequestFactory.request(address: .mostViewed) { (response: Result<ArticleResultStruct, Error>) in
             // Обрабатываем ответ на запрос
             switch response {
             case .success(let success):

@@ -24,6 +24,8 @@ class MostEmailedViewController: UIViewController {
         // Регистрация XIB файла для ячейки
         let nib = UINib(nibName: "ArticleTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "ArticleTableViewCell")
+        
+        navigationItem.title = "Most emailed articles"
     }
     
     override func viewWillAppear(_ animated: Bool) {

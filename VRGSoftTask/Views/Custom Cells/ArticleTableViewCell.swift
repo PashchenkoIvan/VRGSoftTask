@@ -8,6 +8,11 @@
 import UIKit
 
 class ArticleTableViewCell: UITableViewCell {
-    @IBOutlet weak var titleTextLabel: UILabel!
-    @IBOutlet weak var descriptionTextLabel: UILabel!
+    @IBOutlet weak var articleCellImageView: UIImageView!
+    @IBOutlet weak var articleCellTitleTextLabel: UILabel!
+    @IBOutlet weak var articleCellDescriptionTextLabel: UILabel!
+    
+//    func configure() {
+//        self.layoutIfNeeded()
+//    }
 }

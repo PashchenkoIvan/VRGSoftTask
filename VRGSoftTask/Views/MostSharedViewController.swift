@@ -21,6 +21,8 @@ class MostSharedViewController: UIViewController {
         // Регистрация XIB файла для ячейки
         let nib = UINib(nibName: "ArticleTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "ArticleTableViewCell")
+        
+        navigationItem.title = "Most shared articles"
     }
     
     override func viewWillAppear(_ animated: Bool) {

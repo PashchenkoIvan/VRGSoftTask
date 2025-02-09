@@ -8,56 +8,78 @@
 import UIKit
 
 extension MostViewedViewController {
-    //MARK: bindViewModel - Метод для привязки данных из ViewModel к представлению
+    
+    // MARK: - ViewModel Binding
     func bindViewModel() {
         mostViewedViewModel.mostViewed.bind { [weak self] articles in
-            self?.isLoadedData = true // Устанавливаем флаг, что данные загружены
+            guard let self = self else { return }
+            self.isLoadedData = true // Устанавливаем флаг загрузки данных
             
             DispatchQueue.main.async {
-                // Перезагружаем таблицу для отображения новых данных
-                self?.tableView.reloadData()
+                self.tableView.reloadData() // Перезагрузка таблицы
             }
         }
     }
     
-    //MARK: configure - Метод для настройки ячейки с данными статьи
-    private func configure(cell: ArticleTableViewCell, with article: ArticleStruct) {
-        cell.titleTextLabel.text = article.title
-        cell.descriptionTextLabel.text = article.abstract
+    // MARK: - Cell Configuration
+    func configure(cell: ArticleTableViewCell, with article: ArticleStruct) {
+        if let urlString = article.media.first?.mediaMetadata[2].url,
+           let url = URL(string: urlString) {
+            cell.articleCellImageView.kf.setImage(with: url)
+        }
+        
+        cell.articleCellTitleTextLabel.text = article.title
+        cell.articleCellDescriptionTextLabel.text = article.abstract
         cell.selectionStyle = .none
     }
 }
 
 extension MostViewedViewController: UITableViewDataSource {
-    // Указываем количество строк в секции
+    
+    // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Если данных нет, возвращаем 1 ( для отображения сообщения)
         return mostViewedViewModel.mostViewed.value.isEmpty ? 1 : mostViewedViewModel.mostViewed.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell
-        
         if mostViewedViewModel.mostViewed.value.isEmpty {
-            // Если данных нет, создаем ячейку с сообщением
-            cell = UITableViewCell()
-            cell.textLabel?.text = isLoadedData ? "No articles available" : "Loading articles..."
+            return createEmptyStateCell(for: tableView)
         } else {
-            // Получаем текущую статью
-            let currentArticle = mostViewedViewModel.mostViewed.value[indexPath.row]
-            // Декьюдим ячейку типа ArticleTableViewCell
-            guard let articleCell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell", for: indexPath) as? ArticleTableViewCell else {
-                return UITableViewCell()
-            }
-            // Конфигурируем ячейку с данными статьи
-            configure(cell: articleCell, with: currentArticle)
-            cell = articleCell // Устанавливаем текущую ячейку
+            return configureArticleCell(for: tableView, at: indexPath)
         }
-        return cell // Возвращаем ячейку
+    }
+    
+    private func createEmptyStateCell(for tableView: UITableView) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = isLoadedData ? "No articles available" : "Loading articles..."
+        cell.textLabel?.textAlignment = .center // Центрируем текст
+        return cell
+    }
+    
+    private func configureArticleCell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell", for: indexPath) as? ArticleTableViewCell else {
+            return UITableViewCell()
+        }
+        let currentArticle = mostViewedViewModel.mostViewed.value[indexPath.row]
+        configure(cell: cell, with: currentArticle)
+        return cell
     }
 }
 
 extension MostViewedViewController: UITableViewDelegate {
     
+    // MARK: - UITableViewDelegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedArticle = mostViewedViewModel.mostViewed.value[indexPath.row]
+        let articleViewModel = ArticleViewModel(article: selectedArticle)
+        
+        let articleVC = instantiateArticleViewController()
+        articleVC.viewModel = articleViewModel
+        
+        navigationController?.pushViewController(articleVC, animated: true)
+    }
+    
+    private func instantiateArticleViewController() -> ArticleViewController {
+        return storyboard?.instantiateViewController(withIdentifier: "ArticleViewController") as! ArticleViewController
+    }
 }
-

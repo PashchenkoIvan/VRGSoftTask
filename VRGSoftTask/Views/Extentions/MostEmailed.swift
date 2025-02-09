@@ -8,57 +8,69 @@
 import UIKit
 
 extension MostEmailedViewController {
-    //MARK: bindViewModel - Метод для привязки данных из ViewModel к представлению
+    
+    // Метод для привязки данных из ViewModel к представлению
     func bindViewModel() {
         mostEmailedViewModel.mostEmailed.bind { [weak self] articles in
-            self?.isLoadedData = true // Устанавливаем флаг, что данные загружены
-            
+            self?.isLoadedData = true
             DispatchQueue.main.async {
-                // Перезагружаем таблицу для отображения новых данных
                 self?.tableView.reloadData()
             }
         }
     }
     
-    //MARK: configure - Метод для настройки ячейки с данными статьи
+    // Метод для настройки ячейки с данными статьи
     func configure(cell: ArticleTableViewCell, with article: ArticleStruct) {
-        cell.titleTextLabel.text = article.title
-        cell.descriptionTextLabel.text = article.abstract
+        let urlString = article.media[0].mediaMetadata[2].url
+        let url = URL(string: urlString)
+        cell.articleCellImageView.kf.setImage(with: url)
+        
+        cell.articleCellTitleTextLabel.text = article.title
+        cell.articleCellDescriptionTextLabel.text = article.abstract
         cell.selectionStyle = .none
     }
 }
 
-// MARK: - UITableViewDataSource methods
 extension MostEmailedViewController: UITableViewDataSource {
+    
     // Указываем количество строк в секции
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Если данных нет, возвращаем 1 ( для отображения сообщения)
+        // Если данных нет, возвращаем 1 для отображения сообщения об отсутствии статей
         return mostEmailedViewModel.mostEmailed.value.isEmpty ? 1 : mostEmailedViewModel.mostEmailed.value.count
     }
     
     // Настройка ячейки для отображения
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell
-        
         if mostEmailedViewModel.mostEmailed.value.isEmpty {
             // Если данных нет, создаем ячейку с сообщением
-            cell = UITableViewCell()
+            let cell = UITableViewCell()
             cell.textLabel?.text = isLoadedData ? "No articles available" : "Loading articles..."
-        } else {
-            // Получаем текущую статью
-            let currentArticle = mostEmailedViewModel.mostEmailed.value[indexPath.row]
-            // Декьюдим ячейку типа ArticleTableViewCell
-            guard let articleCell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell", for: indexPath) as? ArticleTableViewCell else {
-                return UITableViewCell()
-            }
-            // Конфигурируем ячейку с данными статьи
-            configure(cell: articleCell, with: currentArticle)
-            cell = articleCell // Устанавливаем текущую ячейку
+            cell.textLabel?.textAlignment = .center
+            return cell
         }
-        return cell // Возвращаем ячейку
+        
+        // Получаем текущую статью
+        let currentArticle = mostEmailedViewModel.mostEmailed.value[indexPath.row]
+        guard let articleCell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell", for: indexPath) as? ArticleTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        // Конфигурируем ячейку с данными статьи
+        configure(cell: articleCell, with: currentArticle)
+        return articleCell
     }
 }
 
 extension MostEmailedViewController: UITableViewDelegate {
-    // Можно добавить дополнительные методы делегата здесь, если это необходимо.
+    
+    // Метод для обработки нажатия на ячейку
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedArticle = mostEmailedViewModel.mostEmailed.value[indexPath.row]
+        let articleViewModel = ArticleViewModel(article: selectedArticle)
+        
+        let articleVC = storyboard?.instantiateViewController(withIdentifier: "ArticleViewController") as! ArticleViewController
+        articleVC.viewModel = articleViewModel
+        
+        navigationController?.pushViewController(articleVC, animated: true)
+    }
 }
