@@ -47,19 +47,5 @@ class InternetConnectionManager {
     private func noInternetConnection() {
         let mainViewController = MainViewController()
         mainViewController.viewWillAppear(true)
-        
-        guard let topController = UIApplication.shared.keyWindow?.rootViewController else {
-            return
-        }
-        
-        showNoInternetAlert(on: topController)
-    }
-    
-    private func showNoInternetAlert(on viewController: UIViewController) {
-        let alert = UIAlertController(title: "No Internet Connection", message: "Please check your network settings and try again.", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alert.addAction(okAction)
-        
-        viewController.present(alert, animated: true, completion: nil)
     }
 }

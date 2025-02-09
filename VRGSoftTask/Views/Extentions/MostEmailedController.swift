@@ -8,7 +8,6 @@
 import UIKit
 
 extension MostEmailedViewController {
-    
     // Метод для привязки данных из ViewModel к представлению
     func bindViewModel() {
         mostEmailedViewModel.mostEmailed.bind { [weak self] articles in
@@ -17,6 +16,17 @@ extension MostEmailedViewController {
                 self?.tableView.reloadData()
             }
         }
+    }
+    
+    func setupScreen () {
+        // Убираем разделители у ячеек таблицы
+        tableView.separatorStyle = .none
+        
+        // Регистрация XIB файла для ячейки
+        let nib = UINib(nibName: "ArticleTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "ArticleTableViewCell")
+        
+        navigationItem.title = "Most emailed articles"
     }
     
     // Метод для настройки ячейки с данными статьи

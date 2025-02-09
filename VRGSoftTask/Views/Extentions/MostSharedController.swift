@@ -8,7 +8,6 @@
 import UIKit
 
 extension MostSharedViewController {
-    
     // Метод для привязки данных из ViewModel к представлению
     func bindViewModel() {
         mostSharedViewModel.mostShared.bind { [weak self] articles in
@@ -19,6 +18,17 @@ extension MostSharedViewController {
                 self?.tableView.reloadData()
             }
         }
+    }
+    
+    func setupScreen () {
+        // Убираем разделители у ячеек таблицы
+        tableView.separatorStyle = .none
+        
+        // Регистрация XIB файла для ячейки
+        let nib = UINib(nibName: "ArticleTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "ArticleTableViewCell")
+        
+        navigationItem.title = "Most shared articles"
     }
     
     // Метод для настройки ячейки с данными статьи

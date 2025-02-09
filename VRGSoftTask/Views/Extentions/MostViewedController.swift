@@ -20,6 +20,17 @@ extension MostViewedViewController {
         }
     }
     
+    func setupScreen () {
+        // Убираем разделители у ячеек таблицы
+        tableView.separatorStyle = .none
+        
+        // Регистрация XIB файла для ячейки
+        let nib = UINib(nibName: "ArticleTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "ArticleTableViewCell")
+        
+        navigationItem.title = "Most viewed articles"
+    }
+    
     // MARK: - Cell Configuration
     func configure(cell: ArticleTableViewCell, with article: ArticleStruct) {
         if let urlString = article.media.first?.mediaMetadata[1].url,

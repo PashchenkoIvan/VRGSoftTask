@@ -18,14 +18,7 @@ class MostEmailedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Убираем разделители у ячеек таблицы
-        tableView.separatorStyle = .none
-        
-        // Регистрация XIB файла для ячейки
-        let nib = UINib(nibName: "ArticleTableViewCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "ArticleTableViewCell")
-        
-        navigationItem.title = "Most emailed articles"
+        setupScreen()
     }
     
     override func viewWillAppear(_ animated: Bool) {
