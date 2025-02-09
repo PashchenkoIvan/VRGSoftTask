@@ -21,35 +21,6 @@ class ArticleViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        titleLabel.text = viewModel.getTitle()
-        sourseLabel.text = viewModel.getPublisher()
-        bylineLabel.text = viewModel.getAuthors()
-        descriptionLabel.text = viewModel.getAbstract()
-        urlLabel.text = "Article url: \(viewModel.getArticleURL())"
-        dateLabel.text = viewModel.getPublishedDate()
-        
-        let url = URL(string: viewModel.article.media[0].mediaMetadata[2].url)
-        articleImageView.kf.setImage(with: url)
-        
-        self.navigationItem.title = viewModel.getTitle()
-        
-        setupNavigationBarButton()
-    }
-    
-    func setupNavigationBarButton() {
-        let starButton = UIBarButtonItem(image: UIImage(systemName: "star"), style: .plain, target: self, action: #selector(starButtonTapped))
-        navigationItem.rightBarButtonItem = starButton
-    }
-    
-    @objc func starButtonTapped() {
-        print(viewModel.article)
-        
-        viewModel.addToFavorite(article: viewModel.article)
-        
-        UIView.animate(withDuration: 0.3) {
-            self.navigationItem.rightBarButtonItem?.customView?.alpha = 0
-            self.navigationItem.rightBarButtonItem?.customView?.isHidden = true
-        }
-        self.navigationItem.rightBarButtonItem?.customView?.isHidden = true
+        setupScreen()
     }
 }

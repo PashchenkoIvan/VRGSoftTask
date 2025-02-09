@@ -22,6 +22,15 @@ extension FavoriteViewController {
         cell.articleCellDescriptionTextLabel.text = article.abstract
         cell.selectionStyle = .none
     }
+    
+    func setupScreen () {
+        navigationItem.title = "Favorite articles"
+        
+        tableView.separatorStyle = .none
+        
+        let nib = UINib(nibName: "ArticleTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "ArticleTableViewCell")
+    }
 }
 
 extension FavoriteViewController: UITableViewDataSource {

@@ -16,14 +16,13 @@ class FavoriteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Favorite articles"
+        setupScreen()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         viewModel.getFavoriteArticles()
         bindViewModel()
-        
-        tableView.separatorStyle = .none
-        
-        let nib = UINib(nibName: "ArticleTableViewCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "ArticleTableViewCell")
     }
 }

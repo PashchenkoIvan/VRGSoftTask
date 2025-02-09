@@ -8,7 +8,6 @@
 import UIKit
 
 extension MostViewedViewController {
-    
     // MARK: - ViewModel Binding
     func bindViewModel() {
         mostViewedViewModel.mostViewed.bind { [weak self] articles in
@@ -23,7 +22,7 @@ extension MostViewedViewController {
     
     // MARK: - Cell Configuration
     func configure(cell: ArticleTableViewCell, with article: ArticleStruct) {
-        if let urlString = article.media.first?.mediaMetadata[2].url,
+        if let urlString = article.media.first?.mediaMetadata[1].url,
            let url = URL(string: urlString) {
             cell.articleCellImageView.kf.setImage(with: url)
         }
